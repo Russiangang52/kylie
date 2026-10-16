@@ -1,0 +1,1375 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>КАЙЛИ — Студия красоты на Рождественской</title>
+<meta name="description" content="Студия красоты КАЙЛИ в Москве. Лазерная эпиляция, маникюр, педикюр, косметология, наращивание ресниц, перманентный макияж, LPG-массаж. Рождественская 32.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Inter:wght@200;300;400&family=Fira+Code:wght@400&display=swap">
+
+<style>
+:root {
+  --bg: #0a0a0a;
+  --bg-2: #111111;
+  --text: #ffffff;
+  --text-soft: #dadada;
+  --text-muted: #888888;
+  --accent: rgba(200,170,130, 1);
+  --accent-soft: rgba(200,170,130, 0.25);
+  --line: rgba(255,255,255,0.10);
+  --line-soft: rgba(255,255,255,0.06);
+  --ease-quiet: cubic-bezier(.22, 1, .36, 1);
+  --ease-precise: cubic-bezier(.4, 0, .2, 1);
+  --ease-emphasis: cubic-bezier(.16, 1, .3, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: auto; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  line-height: 1.8;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button { background: none; border: none; color: inherit; cursor: pointer; font-family: inherit; }
+
+h1, h2, h3, h4 {
+  font-family: 'EB Garamond', serif;
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.mono {
+  font-family: 'Fira Code', monospace;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  font-weight: 400;
+}
+
+.eyebrow {
+  font-family: 'Fira Code', monospace;
+  font-size: 12px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+}
+.eyebrow::after {
+  content: '';
+  display: inline-block;
+  width: 0;
+  height: 1px;
+  background: var(--accent);
+  transition: width 800ms var(--ease-quiet) 400ms;
+}
+.is-in .eyebrow::after { width: 2.5rem; }
+
+.section-title {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  margin: 2rem 0;
+}
+
+.container { max-width: 1400px; margin: 0 auto; padding: 0 2rem; }
+.container-narrow { max-width: 860px; margin: 0 auto; padding: 0 2rem; }
+.container-wide { max-width: 1600px; margin: 0 auto; padding: 0 2rem; }
+
+.section { padding: 8rem 0; position: relative; }
+.section-header { margin-bottom: 5rem; }
+
+/* NAV */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 1.5rem 2rem;
+  display: flex; justify-content: space-between; align-items: center;
+  background: rgba(10,10,10,0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--line-soft);
+  transition: padding 400ms var(--ease-quiet), background 400ms var(--ease-quiet);
+}
+.logo {
+  font-family: 'EB Garamond', serif;
+  font-size: 1.4rem;
+  letter-spacing: 0.35em;
+  color: var(--text);
+  cursor: pointer;
+  transition: color 400ms var(--ease-quiet);
+}
+.logo:hover { color: var(--accent); }
+.nav-links { display: flex; gap: 2.5rem; }
+.nav-link {
+  font-family: 'Fira Code', monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  transition: color 400ms var(--ease-quiet);
+  position: relative;
+  padding: 0.5rem 0;
+  cursor: pointer;
+}
+.nav-link::after {
+  content: ''; position: absolute; bottom: 0; left: 0;
+  width: 0; height: 1px; background: var(--accent);
+  transition: width 400ms var(--ease-quiet);
+}
+.nav-link:hover, .nav-link.active { color: var(--accent); }
+.nav-link:hover::after, .nav-link.active::after { width: 100%; }
+.nav-right { display: flex; align-items: center; gap: 2rem; }
+.nav-phone {
+  font-family: 'Fira Code', monospace;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: var(--text);
+  transition: color 400ms var(--ease-quiet);
+}
+.nav-phone:hover { color: var(--accent); }
+.nav-burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; }
+.nav-burger span { width: 24px; height: 1px; background: var(--text); transition: all 400ms var(--ease-quiet); transform-origin: center; }
+.nav-burger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.nav-burger.open span:nth-child(2) { opacity: 0; }
+.nav-burger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+/* PAGE SYSTEM */
+.page { display: none; }
+.page.active { display: block; animation: pageIn 700ms var(--ease-quiet); }
+@keyframes pageIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* REVEAL */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1000ms var(--ease-emphasis), transform 1000ms var(--ease-emphasis);
+}
+.reveal.is-in { opacity: 1; transform: none; }
+.reveal-delay-1 { transition-delay: 100ms; }
+.reveal-delay-2 { transition-delay: 200ms; }
+.reveal-delay-3 { transition-delay: 300ms; }
+.reveal-delay-4 { transition-delay: 400ms; }
+.reveal-delay-5 { transition-delay: 500ms; }
+
+/* BUTTONS */
+.btn {
+  display: inline-flex; align-items: center; gap: 0.75rem;
+  padding: 1.1rem 2rem;
+  font-family: 'Fira Code', monospace;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  transition: all 400ms var(--ease-quiet);
+  cursor: pointer;
+  border: 1px solid transparent;
+  position: relative;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+  border-color: var(--accent);
+}
+.btn-primary:hover { background: transparent; color: var(--accent); }
+.btn-ghost {
+  background: transparent;
+  color: var(--text);
+  border-color: var(--line);
+}
+.btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 10rem 2rem 5rem;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background: url('images/hero-bg.jpg') center/cover;
+  opacity: 0;
+  transform: scale(1.12);
+  filter: blur(12px);
+  transition: opacity 2000ms var(--ease-emphasis), transform 2000ms var(--ease-emphasis), filter 2000ms var(--ease-emphasis);
+}
+.hero.is-in .hero-bg { opacity: 0.42; transform: scale(1); filter: blur(0); }
+.hero::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(10,10,10,0.55) 0%, rgba(10,10,10,0.82) 60%, var(--bg) 100%);
+  z-index: 1;
+}
+.hero-content {
+  position: relative; z-index: 2;
+  max-width: 1400px; margin: 0 auto; width: 100%;
+}
+.hero-eyebrow, .hero-title, .hero-sub, .hero-cta {
+  opacity: 0; transform: translateY(40px);
+  transition: opacity 1000ms var(--ease-emphasis), transform 1000ms var(--ease-emphasis);
+}
+.hero.is-in .hero-eyebrow { opacity: 1; transform: none; transition-delay: 300ms; }
+.hero.is-in .hero-title { opacity: 1; transform: none; transition-delay: 500ms; }
+.hero.is-in .hero-sub { opacity: 1; transform: none; transition-delay: 800ms; }
+.hero.is-in .hero-cta { opacity: 1; transform: none; transition-delay: 1000ms; }
+.hero-title {
+  font-size: clamp(3.5rem, 9vw, 8rem);
+  margin: 2rem 0;
+  line-height: 1.02;
+}
+.hero-sub {
+  font-size: 1.15rem;
+  color: var(--text-soft);
+  max-width: 540px;
+  margin-bottom: 3rem;
+  line-height: 1.7;
+}
+.hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+.hero-meta {
+  position: absolute;
+  bottom: 3rem; left: 2rem; right: 2rem;
+  z-index: 2;
+  display: flex; justify-content: space-between;
+  color: var(--text-muted);
+  font-family: 'Fira Code', monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+/* STICKY TWO-COLUMN */
+.sticky-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: start;
+}
+.sticky-pair .left {
+  position: sticky;
+  top: 120px;
+  padding: 2rem 0;
+}
+.sticky-pair .right { display: flex; flex-direction: column; gap: 0; }
+.philosophy-block {
+  padding: 3rem 0;
+  border-top: 1px solid var(--line);
+}
+.philosophy-block:last-child { border-bottom: 1px solid var(--line); }
+.philosophy-number {
+  font-family: 'Fira Code', monospace;
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+}
+.philosophy-block h3 { font-size: 1.75rem; margin-bottom: 1rem; }
+.philosophy-block p { color: var(--text-soft); font-size: 0.95rem; line-height: 1.8; }
+
+/* SERVICES LIST */
+.services-list { border-top: 1px solid var(--line); }
+.service-row {
+  display: grid;
+  grid-template-columns: 60px 1fr 140px 40px;
+  align-items: center;
+  gap: 2rem;
+  padding: 2.5rem 0;
+  border-bottom: 1px solid var(--line);
+  position: relative;
+  cursor: pointer;
+  transition: padding-left 600ms var(--ease-quiet);
+}
+.service-row::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0;
+  width: 0; height: 1px;
+  background: var(--accent);
+  transition: width 600ms var(--ease-quiet);
+}
+.service-row:hover::before { width: 100%; }
+.service-row:hover { padding-left: 1.5rem; }
+.service-row-num {
+  font-family: 'Fira Code', monospace;
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 0.15em;
+}
+.service-row-name h3 { font-size: 1.5rem; margin-bottom: 0.25rem; transition: color 600ms var(--ease-quiet); }
+.service-row:hover .service-row-name h3 { color: var(--accent); }
+.service-row-name p { color: var(--text-muted); font-size: 0.875rem; }
+.service-row-price {
+  font-family: 'Fira Code', monospace;
+  font-size: 13px;
+  color: var(--text-soft);
+  text-align: right;
+}
+.service-row-arrow {
+  font-size: 1.25rem;
+  color: var(--text-muted);
+  transition: all 600ms var(--ease-quiet);
+  text-align: right;
+}
+.service-row:hover .service-row-arrow { color: var(--accent); transform: translateX(8px); }
+
+/* GALLERY */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 300px;
+  gap: 1rem;
+}
+.gallery-item {
+  overflow: hidden;
+  position: relative;
+  background: var(--bg-2);
+  cursor: pointer;
+}
+.gallery-item img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 1500ms var(--ease-quiet), filter 1500ms var(--ease-quiet);
+  filter: brightness(0.92);
+}
+.gallery-item:hover img { transform: scale(1.08); filter: brightness(1); }
+.gallery-item-tall { grid-row: span 2; }
+.gallery-item-wide { grid-column: span 2; }
+
+/* REVIEWS */
+.review { padding: 3.5rem 0; border-top: 1px solid var(--line); }
+.review:last-child { border-bottom: 1px solid var(--line); }
+.review-text {
+  font-family: 'EB Garamond', serif;
+  font-size: 1.6rem;
+  line-height: 1.5;
+  color: var(--text);
+  margin-bottom: 2rem;
+  font-style: italic;
+}
+.review-author { display: flex; align-items: center; gap: 1rem; color: var(--text-muted); font-size: 0.85rem; }
+.review-author::before {
+  content: ''; display: block;
+  width: 30px; height: 1px;
+  background: var(--accent);
+}
+.review-author-name { color: var(--text); font-family: 'Fira Code', monospace; font-size: 12px; letter-spacing: 0.1em; }
+
+/* CTA SECTION */
+.cta-section {
+  padding: 10rem 2rem;
+  text-align: center;
+  border-top: 1px solid var(--line);
+}
+.cta-section h2 { font-size: clamp(2.5rem, 6vw, 5rem); margin: 2rem 0; }
+.cta-section p { color: var(--text-soft); max-width: 520px; margin: 0 auto 3rem; font-size: 1.05rem; }
+
+/* FOOTER */
+footer { padding: 5rem 2rem 2rem; border-top: 1px solid var(--line); background: var(--bg); }
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 4rem;
+  max-width: 1400px;
+  margin: 0 auto 4rem;
+}
+.footer-col h4 {
+  font-family: 'Fira Code', monospace;
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+  font-weight: 400;
+}
+.footer-col p, .footer-col a {
+  color: var(--text-soft);
+  font-size: 0.9rem;
+  line-height: 1.9;
+  display: block;
+  transition: color 400ms var(--ease-quiet);
+  cursor: pointer;
+}
+.footer-col a:hover { color: var(--accent); }
+.footer-bottom {
+  display: flex; justify-content: space-between; align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding-top: 2rem;
+  border-top: 1px solid var(--line-soft);
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+/* BOOKING FAB */
+.booking-fab {
+  position: fixed;
+  bottom: 2rem; right: 2rem;
+  z-index: 90;
+  display: inline-flex; align-items: center; gap: 0.75rem;
+  padding: 1.1rem 2rem;
+  background: var(--accent);
+  color: var(--bg);
+  font-family: 'Fira Code', monospace;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  border: 1px solid var(--accent);
+  transition: all 400ms var(--ease-quiet);
+  box-shadow: 0 20px 50px -10px rgba(200,170,130,0.35);
+}
+.booking-fab:hover {
+  background: transparent;
+  color: var(--accent);
+  box-shadow: 0 20px 50px -10px rgba(200,170,130,0.15);
+}
+.booking-fab-arrow { transition: transform 400ms var(--ease-quiet); }
+.booking-fab:hover .booking-fab-arrow { transform: translateX(6px); }
+
+/* SERVICES PAGE */
+.page-header { padding: 12rem 2rem 5rem; }
+.page-header .container { max-width: 1400px; }
+.services-category {
+  padding: 5rem 0;
+  border-top: 1px solid var(--line);
+}
+.services-category-header {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 4rem;
+  margin-bottom: 4rem;
+  align-items: end;
+}
+.services-category h2 { font-size: clamp(2rem, 4vw, 3.5rem); }
+.services-category h2 .num {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.85rem;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 1rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+.services-category-header p {
+  color: var(--text-soft);
+  font-size: 1rem;
+  line-height: 1.8;
+}
+.services-list-detailed {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 4rem;
+}
+.service-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--line-soft);
+  gap: 2rem;
+  transition: padding-left 400ms var(--ease-quiet);
+}
+.service-item:hover { padding-left: 0.75rem; }
+.service-item-name {
+  font-family: 'EB Garamond', serif;
+  font-size: 1.2rem;
+  transition: color 400ms var(--ease-quiet);
+}
+.service-item:hover .service-item-name { color: var(--accent); }
+.service-item-name span {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+  font-weight: 300;
+  line-height: 1.5;
+}
+.service-item-price {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.95rem;
+  color: var(--accent);
+  white-space: nowrap;
+}
+.complex-note {
+  margin-top: 2.5rem;
+  padding: 2rem;
+  border: 1px solid var(--accent-soft);
+  background: rgba(200,170,130,0.03);
+}
+.complex-note .label {
+  font-family: 'Fira Code', monospace;
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+}
+.complex-note p { color: var(--text-soft); font-size: 0.9rem; line-height: 1.7; }
+
+/* CONTACTS */
+.contacts-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  padding: 2rem 0 6rem;
+}
+.contact-block {
+  padding: 2rem 0;
+  border-top: 1px solid var(--line);
+}
+.contact-block .label {
+  font-family: 'Fira Code', monospace;
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+.contact-block .value {
+  font-family: 'EB Garamond', serif;
+  font-size: 1.5rem;
+  line-height: 1.4;
+}
+.contact-block .value a { transition: color 400ms var(--ease-quiet); }
+.contact-block .value a:hover { color: var(--accent); }
+.map-container {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  background: var(--bg-2);
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+.map-container iframe {
+  width: 100%; height: 100%; border: 0;
+  filter: grayscale(1) invert(0.92) contrast(0.85) hue-rotate(180deg);
+}
+
+/* MOBILE MENU */
+.mobile-menu {
+  position: fixed; top: 0; right: -100%;
+  width: 100%; height: 100vh;
+  background: var(--bg);
+  z-index: 99;
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: center;
+  gap: 2.5rem;
+  transition: right 600ms var(--ease-quiet);
+  padding: 2rem;
+}
+.mobile-menu.open { right: 0; }
+.mobile-menu a {
+  font-family: 'EB Garamond', serif;
+  font-size: 2.25rem;
+  color: var(--text);
+  transition: color 400ms var(--ease-quiet);
+  cursor: pointer;
+}
+.mobile-menu a:hover { color: var(--accent); }
+.mobile-menu .mono { position: absolute; bottom: 2rem; color: var(--text-muted); }
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .nav-links { display: none; }
+  .nav-phone { display: none; }
+  .nav-burger { display: flex; }
+  .sticky-pair { grid-template-columns: 1fr; gap: 3rem; }
+  .sticky-pair .left { position: static; }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 250px; }
+  .services-list-detailed { grid-template-columns: 1fr; gap: 0; }
+  .services-category-header { grid-template-columns: 1fr; gap: 1.5rem; align-items: start; }
+  .contacts-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+  .service-row { grid-template-columns: 40px 1fr 110px 30px; gap: 1rem; padding: 2rem 0; }
+}
+@media (max-width: 640px) {
+  .section { padding: 5rem 0; }
+  .hero { padding: 8rem 1.5rem 5rem; min-height: 90vh; }
+  .container, .container-narrow, .container-wide { padding: 0 1.5rem; }
+  .gallery-grid { grid-template-columns: 1fr; grid-auto-rows: 280px; }
+  .gallery-item-tall, .gallery-item-wide { grid-row: auto; grid-column: auto; }
+  .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+  .booking-fab { padding: 1rem 1.5rem; bottom: 1rem; right: 1rem; font-size: 11px; }
+  .service-row { grid-template-columns: 30px 1fr 90px; gap: 1rem; padding: 1.75rem 0; }
+  .service-row-arrow { display: none; }
+  .nav { padding: 1rem 1.5rem; }
+  .hero-meta { flex-direction: column; gap: 0.5rem; bottom: 2rem; }
+  .page-header { padding: 9rem 1.5rem 3rem; }
+  .cta-section { padding: 6rem 1.5rem; }
+  .review-text { font-size: 1.3rem; }
+  .hero-title { font-size: clamp(2.8rem, 12vw, 5rem); }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  .reveal { opacity: 1; transform: none; }
+  .hero-eyebrow, .hero-title, .hero-sub, .hero-cta { opacity: 1; transform: none; }
+  .hero-bg { opacity: 0.42; transform: scale(1); filter: blur(0); }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="logo" data-page="home">КАЙЛИ</a>
+  <div class="nav-links">
+    <a class="nav-link active" data-page="home">Главная</a>
+    <a class="nav-link" data-page="services">Услуги</a>
+    <a class="nav-link" data-page="gallery">Галерея</a>
+    <a class="nav-link" data-page="contacts">Контакты</a>
+  </div>
+  <div class="nav-right">
+    <a href="tel:+79586337105" class="nav-phone">+7 958 633-71-05</a>
+    <div class="nav-burger" id="burger"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a data-page="home">Главная</a>
+  <a data-page="services">Услуги</a>
+  <a data-page="gallery">Галерея</a>
+  <a data-page="contacts">Контакты</a>
+  <div class="mono">+7 958 633-71-05</div>
+</div>
+
+<main>
+
+<!-- ============== HOME ============== -->
+<section class="page active" id="page-home">
+
+  <div class="hero reveal">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow"><span class="eyebrow">Студия красоты · Москва · Рождественская 32</span></div>
+      <h1 class="hero-title">КАЙЛИ</h1>
+      <p class="hero-sub">Лазерная эпиляция, маникюр, косметология, наращивание ресниц и перманентный макияж. Один адрес — одиннадцать направлений. Работаем на материалах Luxio, Rock Nail и Gralat.</p>
+      <div class="hero-cta">
+        <a href="#" class="btn btn-primary booking-link" target="_blank" rel="noopener">Записаться онлайн →</a>
+        <a class="btn btn-ghost" data-page="services">Смотреть прайс</a>
+      </div>
+    </div>
+    <div class="hero-meta">
+      <div>Москва · Рождественская 32</div>
+      <div>Пн–Вс · 10:00–22:00</div>
+    </div>
+  </div>
+
+  <!-- WHY US -->
+  <div class="section">
+    <div class="container">
+      <div class="sticky-pair">
+        <div class="left">
+          <div class="reveal"><span class="eyebrow">— Наш подход</span></div>
+          <h2 class="section-title reveal reveal-delay-1">Не спешим.<br>Не экономим.<br>Не шаблоны.</h2>
+          <p class="reveal reveal-delay-2" style="color: var(--text-soft); margin-bottom: 1.5rem; font-size: 1.05rem;">КАЙЛИ — это студия, где мастер работает с одним гостем за раз. Никакого конвейера, никакой спешки между креслами. Каждый визит начинается с разговора: что беспокоит, какой результат хочется, сколько времени готовы уделить.</p>
+          <p class="reveal reveal-delay-3" style="color: var(--text-soft); font-size: 1.05rem;">Мы работаем на материалах Luxio, Rock Nail и Gralat — не потому что это модно, а потому что они держатся и не портят ногтевую пластину. Лазер — диодный, безопасный для всех типов кожи.</p>
+        </div>
+        <div class="right">
+          <div class="philosophy-block reveal">
+            <div class="philosophy-number">01 — Консультация</div>
+            <h3>Сначала смотрим, потом делаем</h3>
+            <p>Перед лазером — проверка чувствительности кожи. Перед маникюром — оценка состояния ногтей. Перед перманентом — эскиз. Никаких сюрпризов в процессе.</p>
+          </div>
+          <div class="philosophy-block reveal">
+            <div class="philosophy-number">02 — Материалы</div>
+            <h3>Три бренда гель-лака на выбор</h3>
+            <p>Rock Nail — стойкость до 4 недель. Luxio — гипоаллергенная формула, выравнивание включено. Gralat — оптимальное соотношение цены и качества. Подберём под ваш режим носки.</p>
+          </div>
+          <div class="philosophy-block reveal">
+            <div class="philosophy-number">03 — Стерильность</div>
+            <h3>По СанПиН, без компромиссов</h3>
+            <p>Инструменты проходят три этапа: дезинфекция, ультразвук, стерилизация в сухожаровом шкафу. Пилки и бафы — одноразовые. Это не маркетинг, это базовая гигиена.</p>
+          </div>
+          <div class="philosophy-block reveal">
+            <div class="philosophy-number">04 — После визита</div>
+            <h3>Остаёмся на связи</h3>
+            <p>Если что-то пошло не так — покрытие откололось, аллергия, неудобство — приходите, переделаем без вопросов в течение недели. Это правило студии, а не жест доброй воли.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SERVICES PREVIEW -->
+  <div class="section" style="border-top: 1px solid var(--line);">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="eyebrow">— Направления</span>
+        <h2 class="section-title">Одиннадцать услуг<br>в одной студии</h2>
+      </div>
+      <div class="services-list">
+        <div class="service-row reveal" data-page="services">
+          <div class="service-row-num">01</div>
+          <div class="service-row-name">
+            <h3>Лазерная эпиляция</h3>
+            <p>Диодный лазер · 28 зон · комплексы со скидкой</p>
+          </div>
+          <div class="service-row-price">от 700 ₽</div>
+          <div class="service-row-arrow">→</div>
+        </div>
+        <div class="service-row reveal" data-page="services">
+          <div class="service-row-num">02</div>
+          <div class="service-row-name">
+            <h3>Маникюр и покрытие</h3>
+            <p>Rock Nail · Luxio · Gralat · снятие и выравнивание включены</p>
+          </div>
+          <div class="service-row-price">от 1 400 ₽</div>
+          <div class="service-row-arrow">→</div>
+        </div>
+        <div class="service-row reveal" data-page="services">
+          <div class="service-row-num">03</div>
+          <div class="service-row-name">
+            <h3>Педикюр</h3>
+            <p>Аппаратный и комбинированный · гель-лак трёх брендов</p>
+          </div>
+          <div class="service-row-price">от 1 600 ₽</div>
+          <div class="service-row-arrow">→</div>
+        </div>
+        <div class="service-row reveal" data-page="services">
+          <div class="service-row-num">04</div>
+          <div class="service-row-name">
+            <h3>Косметология</h3>
+            <p>Чистка лица · пилинги · массаж · карбокситерапия</p>
+          </div>
+          <div class="service-row-price">от 1 700 ₽</div>
+          <div class="service-row-arrow">→</div>
+        </div>
+        <div class="service-row reveal" data-page="services">
+          <div class="service-row-num">05</div>
+          <div class="service-row-name">
+            <h3>Наращивание ресниц</h3>
+            <p>От 1,5 до голливудского объёма · снятие бесплатно</p>
+          </div>
+          <div class="service-row-price">от 3 100 ₽</div>
+          <div class="service-row-arrow">→</div>
+        </div>
+        <div class="service-row reveal" data-page="services">
+          <div class="service-row-num">06</div>
+          <div class="service-row-name">
+            <h3>Перманентный макияж</h3>
+            <p>Брови · стрелки · губы · межресничка · коррекции</p>
+          </div>
+          <div class="service-row-price">от 5 500 ₽</div>
+          <div class="service-row-arrow">→</div>
+        </div>
+        <div class="service-row reveal" data-page="services">
+          <div class="service-row-num">07</div>
+          <div class="service-row-name">
+            <h3>LPG-массаж</h3>
+            <p>Всё тело и отдельные зоны · абонементы 5 и 10 сеансов</p>
+          </div>
+          <div class="service-row-price">от 1 900 ₽</div>
+          <div class="service-row-arrow">→</div>
+        </div>
+        <div class="service-row reveal" data-page="services">
+          <div class="service-row-num">08</div>
+          <div class="service-row-name">
+            <h3>Брови и ламинирование ресниц</h3>
+            <p>Архитектура · хна · краска · ботокс для ресниц</p>
+          </div>
+          <div class="service-row-price">от 900 ₽</div>
+          <div class="service-row-arrow">→</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GALLERY PREVIEW -->
+  <div class="section" style="border-top: 1px solid var(--line);">
+    <div class="container-wide">
+      <div class="section-header reveal">
+        <span class="eyebrow">— Студия</span>
+        <h2 class="section-title">Из нашей ленты</h2>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item gallery-item-tall reveal" data-page="gallery">
+          <img src="images/img-1.jpg" alt="Рабочее место мастера маникюра в студии КАЙЛИ" loading="lazy">
+        </div>
+        <div class="gallery-item reveal reveal-delay-1" data-page="gallery">
+          <img src="images/img-2.jpg" alt="Френч с блёстками" loading="lazy">
+        </div>
+        <div class="gallery-item reveal reveal-delay-2" data-page="gallery">
+          <img src="images/img-3.jpg" alt="Маникюрный стол с материалами Luxio" loading="lazy">
+        </div>
+        <div class="gallery-item gallery-item-wide reveal" data-page="gallery">
+          <img src="images/img-4.jpg" alt="Ресепшн студии КАЙЛИ" loading="lazy" style="object-position: center 55%;">
+        </div>
+        <div class="gallery-item reveal reveal-delay-1" data-page="gallery">
+          <img src="images/img-5.jpg" alt="Маникюрная зона у окна" loading="lazy">
+        </div>
+      </div>
+      <div style="text-align: center; margin-top: 4rem;">
+        <a class="btn btn-ghost reveal" data-page="gallery">Смотреть все фото →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- REVIEWS -->
+  <div class="section" style="border-top: 1px solid var(--line);">
+    <div class="container-narrow">
+      <div class="section-header reveal">
+        <span class="eyebrow">— Отзывы</span>
+        <h2 class="section-title">Что говорят гости</h2>
+      </div>
+      <div class="review reveal">
+        <p class="review-text">«Хожу на лазер уже четвёртый сеанс. Результат видно после первого — волосы стали тоньше, рост замедлился. Мастер всегда предупреждает о ощущениях, без сюрпризов.»</p>
+        <div class="review-author">
+          <span class="review-author-name">Ирина К.</span>
+          <span>· гостья студии</span>
+        </div>
+      </div>
+      <div class="review reveal">
+        <p class="review-text">«Маникюр Luxio держится ровно три недели без сколов. Снятие и выравнивание включены в цену — никаких доплат на месте. Это редкость для Москвы.»</p>
+        <div class="review-author">
+          <span class="review-author-name">Дарья В.</span>
+          <span>· гостья студии</span>
+        </div>
+      </div>
+      <div class="review reveal">
+        <p class="review-text">«Делала перманент губ. Эскиз рисовали 40 минут, корректировали три раза. Сама процедура — два часа, без боли. Цвет естественный, форма моя. Прошло полгода — всё на месте.»</p>
+        <div class="review-author">
+          <span class="review-author-name">Ольга М.</span>
+          <span>· гостья студии</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <div class="container-narrow">
+      <div class="reveal"><span class="eyebrow" style="margin-bottom: 2rem; display: inline-flex;">— Запись</span></div>
+      <h2 class="reveal reveal-delay-1">Запишитесь онлайн</h2>
+      <p class="reveal reveal-delay-2">Онлайн-запись через Yclients. Выберите направление, мастера и удобное время — подтверждение придёт в SMS. Первичная консультация бесплатна.</p>
+      <a href="#" class="btn btn-primary reveal reveal-delay-3 booking-link" target="_blank" rel="noopener">Записаться онлайн →</a>
+    </div>
+  </div>
+
+</section>
+
+<!-- ============== SERVICES ============== -->
+<section class="page" id="page-services">
+
+  <div class="page-header">
+    <div class="container">
+      <div class="reveal"><span class="eyebrow">— Прайс-лист</span></div>
+      <h1 class="section-title reveal reveal-delay-1" style="margin-top: 2rem;">Все услуги<br>и цены.</h1>
+      <p class="reveal reveal-delay-2" style="color: var(--text-soft); max-width: 620px; margin-top: 1.5rem; font-size: 1.1rem;">Цены указаны за одну процедуру. Снятие гель-лака и выравнивание уже включены в стоимость маникюра и педикюра с покрытием. Комплексы лазерной эпиляции дешевле, чем зоны по отдельности.</p>
+    </div>
+  </div>
+
+  <div class="container" style="padding-bottom: 8rem;">
+
+    <!-- 01. ЛАЗЕРНАЯ ЭПИЛЯЦИЯ -->
+    <div class="services-category reveal">
+      <div class="services-category-header">
+        <h2><span class="num">01 — Направление</span>Лазерная эпиляция</h2>
+        <p>Диодный лазер с охлаждением — подходит для всех типов кожи и волос. Перед первым сеансом — консультация и тест на чувствительность. Интервал между процедурами 4–6 недель.</p>
+      </div>
+      <div class="services-list-detailed">
+        <div class="service-item"><div class="service-item-name">Верхняя губа<span>лазерная коррекция волосяного покрова</span></div><div class="service-item-price">700 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Лицо — 1 зона<span>одна зона по выбору</span></div><div class="service-item-price">700 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Лицо полностью<span>все зоны лица</span></div><div class="service-item-price">2 000 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Кисти рук<span>с тыльной стороны ладони</span></div><div class="service-item-price">1 000 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Руки полностью<span>кисти + предплечья + плечи</span></div><div class="service-item-price">2 000 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Руки до локтя<span>кисти + предплечья</span></div><div class="service-item-price">1 400 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Ноги полностью<span>голени + бёдра</span></div><div class="service-item-price">3 000 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Голени<span>от щиколотки до колена</span></div><div class="service-item-price">1 800 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Бёдра<span>от колена до паховой складки</span></div><div class="service-item-price">2 000 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Бикини классика<span>лобковая зона по линии белья</span></div><div class="service-item-price">2 000 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Бикини тотальное<span>лобок + пах + межъягодичная складка</span></div><div class="service-item-price">2 500 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Подмышечные впадины<span>обе подмышки</span></div><div class="service-item-price">1 500 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Шея сзади<span>задняя поверхность шеи</span></div><div class="service-item-price">900 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Шея<span>полностью, со всех сторон</span></div><div class="service-item-price">1 400 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Грудь (вокруг ареолы)<span>зона вокруг ареолы</span></div><div class="service-item-price">900 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Декольте<span>зона декольте</span></div><div class="service-item-price">1 300 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Грудь полностью<span>вся зона груди</span></div><div class="service-item-price">1 600 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Живот<span>вся зона живота</span></div><div class="service-item-price">1 600 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Линии на животе<span>вертикальная линия</span></div><div class="service-item-price">900 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Спина<span>вся спина</span></div><div class="service-item-price">3 000 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Поясница<span>нижняя часть спины</span></div><div class="service-item-price">1 400 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Ягодицы<span>обе ягодицы</span></div><div class="service-item-price">1 600 ₽</div></div>
+      </div>
+
+      <div class="complex-note reveal" style="margin-top: 3rem;">
+        <div class="label">— Комплексы лазерной эпиляции</div>
+        <p style="margin-bottom: 2rem;">Комплексы выгоднее, чем зоны по отдельности. Подходят для тех, кто хочет обработать несколько зон за один визит.</p>
+        <div class="services-list-detailed" style="margin-top: 1.5rem;">
+          <div class="service-item"><div class="service-item-name">Подмышки + бикини глубокое<span>две зоны</span></div><div class="service-item-price">2 800 ₽</div></div>
+          <div class="service-item"><div class="service-item-name">Подмышки + бикини + голени<span>три зоны</span></div><div class="service-item-price">4 000 ₽</div></div>
+          <div class="service-item"><div class="service-item-name">Подмышки + бикини + ноги полностью<span>три зоны</span></div><div class="service-item-price">4 900 ₽</div></div>
+          <div class="service-item"><div class="service-item-name">Подмышки + бикини + голени + руки до локтя<span>четыре зоны</span></div><div class="service-item-price">5 000 ₽</div></div>
+          <div class="service-item"><div class="service-item-name">Подмышки + бикини + ноги + руки полностью<span>четыре зоны</span></div><div class="service-item-price">6 300 ₽</div></div>
+          <div class="service-item"><div class="service-item-name">ALL Inclusive<span>лицо + руки + ноги + подмышки + бикини + ягодицы + межъягодичная складка</span></div><div class="service-item-price">7 500 ₽</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 02. МАНИКЮР -->
+    <div class="services-category reveal">
+      <div class="services-category-header">
+        <h2><span class="num">02 — Направление</span>Маникюр</h2>
+        <p>Аппаратный и комбинированный маникюр. Покрытие гель-лаком трёх брендов: Rock Nail, Luxio, Gralat. Снятие и выравнивание включены в стоимость там, где указано.</p>
+      </div>
+      <div class="services-list-detailed">
+        <div class="service-item"><div class="service-item-name">Маникюр + гель-лак Rock Nail<span>снятие и выравнивание включены</span></div><div class="service-item-price">2 900 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Маникюр + гель-лак Luxio<span>снятие и выравнивание включены</span></div><div class="service-item-price">3 100 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Маникюр + гель-лак Gralat<span>снятие + выравнивание + покрытие</span></div><div class="service-item-price">2 800 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Акция для новых клиентов<span>снятие + маникюр + выравнивание + гель-лак Luxio</span></div><div class="service-item-price">2 500 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Маникюр комбинированный<span>без покрытия</span></div><div class="service-item-price">1 400 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Маникюр аппаратный<span>без покрытия</span></div><div class="service-item-price">1 400 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Маникюр + обычный лак<span>аппаратный/комбинированный</span></div><div class="service-item-price">1 800 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Маникюр + лечебный лак<span>аппаратный/комбинированный</span></div><div class="service-item-price">1 800 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Маникюр мужской<span>без покрытия</span></div><div class="service-item-price">1 800 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Маникюр детский<span>без покрытия</span></div><div class="service-item-price">700 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Покрытие обычным лаком<span>без маникюра</span></div><div class="service-item-price">400 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Покрытие лечебным лаком<span>без маникюра</span></div><div class="service-item-price">400 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Снятие гель-лака аппаратом<span>без последующего покрытия</span></div><div class="service-item-price">500 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Снятие гель-лака + маникюр<span>на руках</span></div><div class="service-item-price">1 900 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Снятие обычного лака<span>без маникюра</span></div><div class="service-item-price">300 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Снятие наращенных ногтей<span>гель / полигель</span></div><div class="service-item-price">500 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Укрепление гель / полигель<span>дополнение к маникюру</span></div><div class="service-item-price">700 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Укрепление акриловой пудрой<span>дополнение к маникюру</span></div><div class="service-item-price">400 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Снятие + маникюр + камуфляж гелем<span>выравнивание + покрытие камуфляжем</span></div><div class="service-item-price">3 000 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Ремонт 1 ногтя полигелем<span>снятие и покрытие не входят</span></div><div class="service-item-price">100 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Ремонт 1 ногтя с покрытием<span>снятие + ремонт + гель-лак</span></div><div class="service-item-price">350 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Наращивание 1 ногтя<span>со снятием и покрытием</span></div><div class="service-item-price">500 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Парафинотерапия рук<span>дополнение к маникюру</span></div><div class="service-item-price">500 ₽</div></div>
+      </div>
+    </div>
+
+    <!-- 03. ПЕДИКЮР -->
+    <div class="services-category reveal">
+      <div class="services-category-header">
+        <h2><span class="num">03 — Направление</span>Педикюр</h2>
+        <p>Аппаратный и комбинированный педикюр. Обработка стопы и пальчиков. Гель-лак трёх брендов: Rock Nail, Luxio, Gralat. Дисковый аппарат для грубой кожи.</p>
+      </div>
+      <div class="services-list-detailed">
+        <div class="service-item"><div class="service-item-name">Педикюр аппаратный / комбинированный<span>обработка стопы и пальчиков</span></div><div class="service-item-price">2 400 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Педикюр аппаратный (дисковый)<span>для грубой кожи стопы</span></div><div class="service-item-price">2 400 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Педикюр комбинированный<span>ручная + аппаратная обработка</span></div><div class="service-item-price">2 400 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Частичный педикюр<span>только пальчики</span></div><div class="service-item-price">1 600 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Педикюр + обычный лак<span>аппаратный / комбинированный</span></div><div class="service-item-price">2 900 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Снятие + педикюр + гель-лак Rock Nail<span>комбинированный / аппарат</span></div><div class="service-item-price">3 600 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Снятие + педикюр + гель-лак Gralat<span>комбинированный / аппарат</span></div><div class="service-item-price">3 500 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Снятие + педикюр + гель-лак Luxio<span>комбинированный / аппарат</span></div><div class="service-item-price">3 800 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Акция на 1-е посещение<span>снятие + педикюр + гель-лак Luxio / Rock Nail / Gralat</span></div><div class="service-item-price">3 100 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Педикюр + обычный лак + снятие<span>комбинированный / аппарат</span></div><div class="service-item-price">2 900 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Снятие гель-лака на ногах<span>с последующим покрытием</span></div><div class="service-item-price">300 ₽</div></div>
+      </div>
+    </div>
+
+    <!-- 04. КОСМЕТОЛОГИЯ -->
+    <div class="services-category reveal">
+      <div class="services-category-header">
+        <h2><span class="num">04 — Направление</span>Косметология</h2>
+        <p>Чистка лица (механическая, ультразвуковая, комбинированная), пилинги (Джесснера, салициловый, миндальный, мультикислотный), массажный уход, карбокситерапия.</p>
+      </div>
+      <div class="services-list-detailed">
+        <div class="service-item"><div class="service-item-name">Массажный уход лица классический<span>релакс + тонус</span></div><div class="service-item-price">1 700 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Массажный уход лица лифтинговый<span>подтяжка овала</span></div><div class="service-item-price">2 800 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Чистка лица комбинированная STANDART<span>механическая + ультразвук</span></div><div class="service-item-price">4 000 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Чистка лица комбинированная PREMIUM<span>включен пилинг</span></div><div class="service-item-price">4 600 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Чистка лица ультразвуковая<span>щадящая</span></div><div class="service-item-price">3 200 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Чистка лица механическая<span>ручная</span></div><div class="service-item-price">3 700 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Пилинг Джесснера серединный<span>от пигментации и акне</span></div><div class="service-item-price">5 600 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Пилинг салициловый<span>от жирной кожи и воспалений</span></div><div class="service-item-price">4 000 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Пилинг миндальный<span>мягкий, для чувствительной кожи</span></div><div class="service-item-price">4 000 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Пилинг мультикислотный<span>комплекс кислот</span></div><div class="service-item-price">4 000 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Карбокситерапия<span>от 4 400 ₽ и выше</span></div><div class="service-item-price">4 400 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Маска увлажняющая<span>дополнение к процедуре</span></div><div class="service-item-price">700 ₽</div></div>
+      </div>
+    </div>
+
+    <!-- 05. НАРАЩИВАНИЕ РЕСНИЦ -->
+    <div class="services-category reveal">
+      <div class="services-category-header">
+        <h2><span class="num">05 — Направление</span>Наращивание ресниц</h2>
+        <p>Классика, 1,5–2,5D, тройной и голливудский объём. Снятие предыдущего наращивания всегда бесплатно. Материалы — гипоаллергенный клей, без формальдегида.</p>
+      </div>
+      <div class="services-list-detailed">
+        <div class="service-item"><div class="service-item-name">Полный объём<span>снятие бесплатно</span></div><div class="service-item-price">3 100 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">1,5 объём<span>снятие бесплатно</span></div><div class="service-item-price">3 300 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Двойной объём (2D)<span>снятие бесплатно</span></div><div class="service-item-price">3 800 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">2,5 объём<span>снятие бесплатно</span></div><div class="service-item-price">3 900 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Тройной объём (3D)<span>снятие бесплатно</span></div><div class="service-item-price">4 000 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Голливудский объём<span>снятие бесплатно</span></div><div class="service-item-price">4 800 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Снятие наращенных ресниц<span>без последующего наращивания</span></div><div class="service-item-price">500 ₽</div></div>
+      </div>
+    </div>
+
+    <!-- 06. ЛАМИНИРОВАНИЕ РЕСНИЦ -->
+    <div class="services-category reveal">
+      <div class="services-category-header">
+        <h2><span class="num">06 — Направление</span>Ламинирование ресниц</h2>
+        <p>Завивка и питание собственных ресниц. Эффект подкрученных, визуально более длинных ресниц на 6–8 недель. С окрашиванием краской и ботоксом.</p>
+      </div>
+      <div class="services-list-detailed">
+        <div class="service-item"><div class="service-item-name">Ламинирование + окрашивание краской<span>без ботокса</span></div><div class="service-item-price">2 900 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Ламинирование + окрашивание + ботокс<span>питание и восстановление</span></div><div class="service-item-price">3 100 ₽</div></div>
+      </div>
+    </div>
+
+    <!-- 07. ПЕРМАНЕНТНЫЙ МАКИЯЖ -->
+    <div class="services-category reveal">
+      <div class="services-category-header">
+        <h2><span class="num">07 — Направление</span>Перманентный макияж</h2>
+        <p>Теневая/пудровая техника бровей, лайнерные и классические стрелки, межресничка, губы. Перед процедурой — эскиз. Коррекция входит в протокол и делается через 1–2 месяца.</p>
+      </div>
+      <div class="services-list-detailed">
+        <div class="service-item"><div class="service-item-name">Брови — теневая / пудровая техника<span>первичная процедура</span></div><div class="service-item-price">8 000 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Стрелка лайнерная / классическая<span>первичная процедура</span></div><div class="service-item-price">8 000 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Межресничное пространство<span>первичная процедура</span></div><div class="service-item-price">5 500 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Губы<span>первичная процедура</span></div><div class="service-item-price">8 000 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Стрелка — коррекция<span>через 1–2 месяца</span></div><div class="service-item-price">5 000 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Межресничное пространство — коррекция<span>через 1–2 месяца</span></div><div class="service-item-price">3 500 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Губы — коррекция<span>через 1–2 месяца</span></div><div class="service-item-price">5 000 ₽</div></div>
+      </div>
+    </div>
+
+    <!-- 08. БРОВИ -->
+    <div class="services-category reveal">
+      <div class="services-category-header">
+        <h2><span class="num">08 — Направление</span>Брови</h2>
+        <p>Коррекция воском и пинцетом, тридинг (нитью), окрашивание хной или краской, архитектура с моделированием, ламинирование.</p>
+      </div>
+      <div class="services-list-detailed">
+        <div class="service-item"><div class="service-item-name">Коррекция бровей / тридинг<span>без окрашивания</span></div><div class="service-item-price">900 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Окрашивание хной<span>без коррекции</span></div><div class="service-item-price">900 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Окрашивание бровей краской<span>без коррекции</span></div><div class="service-item-price">900 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Коррекция + окрашивание краской<span>комплекс</span></div><div class="service-item-price">1 800 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Архитектура бровей<span>коррекция + моделирование + хна + укладка гелем</span></div><div class="service-item-price">1 800 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Ламинирование бровей + коррекция + краска<span>полный комплекс</span></div><div class="service-item-price">3 200 ₽</div></div>
+      </div>
+    </div>
+
+    <!-- 09. LPG -->
+    <div class="services-category reveal">
+      <div class="services-category-header">
+        <h2><span class="num">09 — Направление</span>LPG-массаж</h2>
+        <p>Аппаратный вакуумно-роликовый массаж. Коррекция фигуры, лимфодренаж, тонус кожи. Для процедуры нужен индивидуальный костюм — можно купить или взять в аренду.</p>
+      </div>
+      <div class="services-list-detailed">
+        <div class="service-item"><div class="service-item-name">LPG всё тело — 1 сеанс<span>40 минут</span></div><div class="service-item-price">1 900 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Абонемент на 5 сеансов — всё тело<span>40 минут каждый, 1 костюм в подарок</span></div><div class="service-item-price">9 500 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Абонемент на 10 сеансов — всё тело<span>40 минут каждый, 1 костюм в подарок</span></div><div class="service-item-price">17 000 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">LPG отдельная зона — 1 сеанс<span>25 минут</span></div><div class="service-item-price">1 900 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Абонемент на 5 сеансов — отдельная зона<span>25 минут каждый, 1 костюм в подарок</span></div><div class="service-item-price">7 500 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Абонемент на 10 сеансов — отдельная зона<span>40 минут каждый, 1 костюм в подарок</span></div><div class="service-item-price">12 000 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Аренда многоразового костюма<span>на 1 сеанс</span></div><div class="service-item-price">600 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Индивидуальный костюм для LPG<span>в собственность</span></div><div class="service-item-price">1 200 ₽</div></div>
+      </div>
+    </div>
+
+    <!-- 10. НАРАЩИВАНИЕ НОГТЕЙ -->
+    <div class="services-category reveal">
+      <div class="services-category-header">
+        <h2><span class="num">10 — Направление</span>Наращивание ногтей</h2>
+        <p>Наращивание на нижние формы, гелевые типсы или верхние формы. С маникюром и покрытием гель-лаком. Коррекция раз в 3–4 недели.</p>
+      </div>
+      <div class="services-list-detailed">
+        <div class="service-item"><div class="service-item-name">Наращивание + маникюр + гель-лак<span>до 1,5 см от свободного края</span></div><div class="service-item-price">4 500 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Наращивание + маникюр + гель-лак<span>от 1,5 см от свободного края</span></div><div class="service-item-price">6 000 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Коррекция нарощенных + маникюр + гель-лак<span>до 1,5 см от свободного края</span></div><div class="service-item-price">4 000 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Коррекция нарощенных + маникюр + гель-лак<span>от 1,5 см от свободного края</span></div><div class="service-item-price">5 500 ₽</div></div>
+      </div>
+    </div>
+
+    <!-- 11. ДИЗАЙНЫ НОГТЕЙ -->
+    <div class="services-category reveal">
+      <div class="services-category-header">
+        <h2><span class="num">11 — Направление</span>Дизайны ногтей</h2>
+        <p>Френч, лунки, обратный френч, втирки, фольга, растяжки блестками, глиттер Luxio, стемпинг, слайдеры. Дизайн поверх основного покрытия.</p>
+      </div>
+      <div class="services-list-detailed">
+        <div class="service-item"><div class="service-item-name">Френч / Лунки / Обратный<span>на все ногти</span></div><div class="service-item-price">500 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Втирка / Фольга<span>на все ногти</span></div><div class="service-item-price">1 000 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Растяжка блестками / глиттером<span>на все ногти</span></div><div class="service-item-price">700 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Глиттер Luxio<span>за 1 палец</span></div><div class="service-item-price">100 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Стемпинг<span>за 1 шт</span></div><div class="service-item-price">50 ₽</div></div>
+        <div class="service-item"><div class="service-item-name">Слайдер / наклейка<span>за 1 шт</span></div><div class="service-item-price">50 ₽</div></div>
+      </div>
+    </div>
+
+    <div style="text-align: center; padding: 5rem 0 0;">
+      <div class="reveal" style="margin-bottom: 2rem;"><span class="eyebrow" style="display: inline-flex;">— Запись</span></div>
+      <a href="#" class="btn btn-primary booking-link" target="_blank" rel="noopener">Записаться онлайн →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============== GALLERY ============== -->
+<section class="page" id="page-gallery">
+
+  <div class="page-header">
+    <div class="container">
+      <div class="reveal"><span class="eyebrow">— Галерея</span></div>
+      <h1 class="section-title reveal reveal-delay-1" style="margin-top: 2rem;">Студия КАЙЛИ.</h1>
+      <p class="reveal reveal-delay-2" style="color: var(--text-soft); max-width: 620px; margin-top: 1.5rem; font-size: 1.1rem;">Рабочие места, материалы и атмосфера студии на Рождественской, 32. Больше работ — в наших соцсетях.</p>
+    </div>
+  </div>
+
+  <div class="container-wide" style="padding-bottom: 8rem;">
+    <div class="gallery-grid">
+      <div class="gallery-item gallery-item-tall reveal">
+        <img src="images/img-1.jpg" alt="Рабочее место мастера маникюра в студии КАЙЛИ" loading="lazy">
+      </div>
+      <div class="gallery-item reveal reveal-delay-1">
+        <img src="images/img-2.jpg" alt="Френч с блёстками" loading="lazy">
+      </div>
+      <div class="gallery-item reveal reveal-delay-2">
+        <img src="images/img-3.jpg" alt="Маникюрный стол с материалами Luxio" loading="lazy">
+      </div>
+      <div class="gallery-item gallery-item-wide reveal">
+        <img src="images/img-4.jpg" alt="Ресепшн студии КАЙЛИ" loading="lazy" style="object-position: center 55%;">
+      </div>
+      <div class="gallery-item reveal reveal-delay-1">
+        <img src="images/img-5.jpg" alt="Маникюрная зона у окна" loading="lazy">
+      </div>
+    </div>
+
+    <div style="text-align: center; padding: 5rem 0 0;">
+      <p class="reveal" style="color: var(--text-muted); margin-bottom: 2rem; font-family: 'Fira Code', monospace; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;">— Хотите так же?</p>
+      <a href="#" class="btn btn-primary reveal reveal-delay-1 booking-link" target="_blank" rel="noopener">Записаться онлайн →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============== CONTACTS ============== -->
+<section class="page" id="page-contacts">
+
+  <div class="page-header">
+    <div class="container">
+      <div class="reveal"><span class="eyebrow">— Контакты</span></div>
+      <h1 class="section-title reveal reveal-delay-1" style="margin-top: 2rem;">Где мы находимся<br>и как записаться.</h1>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="contacts-grid">
+      <div>
+        <div class="contact-block reveal">
+          <div class="label">— Адрес</div>
+          <div class="value">Москва, Рождественская ул., 32</div>
+        </div>
+        <div class="contact-block reveal">
+          <div class="label">— Телефон</div>
+          <div class="value"><a href="tel:+79586337105">+7 958 633-71-05</a></div>
+        </div>
+        <div class="contact-block reveal">
+          <div class="label">— Часы работы</div>
+          <div class="value">Пн–Вс<br>10:00 — 22:00</div>
+        </div>
+        <div class="contact-block reveal">
+          <div class="label">— Онлайн-запись</div>
+          <div class="value"><a href="#" class="booking-link" target="_blank" rel="noopener">Записаться через Yclients →</a></div>
+        </div>
+        <div class="contact-block reveal">
+          <div class="label">— Соцсети</div>
+          <div class="value" style="display: flex; gap: 2rem; font-size: 1.2rem; flex-wrap: wrap;">
+            <a href="https://t.me/kyliebeautybarr" target="_blank" rel="noopener">Telegram</a>
+            <a href="https://wa.me/79586337105" target="_blank" rel="noopener">WhatsApp</a>
+            <a href="https://vk.ru/kyliebeautybar" target="_blank" rel="noopener">ВКонтакте</a>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="map-container reveal">
+          <iframe src="https://yandex.ru/map-widget/v1/?text=Москва%2C%20Рождественская%20улица%2C%2032&z=16" loading="lazy" title="Карта — КАЙЛИ"></iframe>
+        </div>
+        <div style="margin-top: 2rem;">
+          <a href="#" class="btn btn-ghost booking-link" target="_blank" rel="noopener">Записаться онлайн →</a>
+        </div>
+        <div style="margin-top: 4rem;" class="reveal">
+          <div class="mono" style="color: var(--accent); margin-bottom: 1rem;">— Как добраться</div>
+          <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Рождественская 32</h3>
+          <p style="color: var(--text-soft); font-size: 0.95rem; line-height: 1.8;">Студия расположена на Рождественской улице, 32, рядом со станцией метро «Некрасовка». Точный маршрут до входа и схему парковки пришлём в WhatsApp после записи.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="padding: 5rem 0; text-align: center; border-top: 1px solid var(--line);">
+      <div class="reveal"><span class="eyebrow" style="margin-bottom: 2rem; display: inline-flex;">— Запись</span></div>
+      <h2 class="reveal reveal-delay-1" style="font-size: clamp(2.5rem, 5vw, 4rem); margin: 2rem 0;">Запишитесь прямо сейчас</h2>
+      <p class="reveal reveal-delay-2" style="color: var(--text-soft); max-width: 520px; margin: 0 auto 3rem;">Онлайн-запись через Yclients. Выберите направление, мастера и удобное время — подтверждение придёт в SMS.</p>
+      <a href="#" class="btn btn-primary reveal reveal-delay-3 booking-link" target="_blank" rel="noopener">Записаться онлайн →</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h4>— Студия</h4>
+      <p style="font-family: 'EB Garamond', serif; font-size: 1.5rem; color: var(--text); margin-bottom: 1rem; line-height: 1.4;">КАЙЛИ</p>
+      <p>Студия красоты в Москве.<br>11 направлений — один адрес.</p>
+    </div>
+    <div class="footer-col">
+      <h4>— Навигация</h4>
+      <a data-page="home">Главная</a>
+      <a data-page="services">Услуги</a>
+      <a data-page="gallery">Галерея</a>
+      <a data-page="contacts">Контакты</a>
+    </div>
+    <div class="footer-col">
+      <h4>— Контакты</h4>
+      <a href="tel:+79586337105">+7 958 633-71-05</a>
+      <p>Москва, Рождественская 32</p>
+      <p>Пн–Вс · 10:00–22:00</p>
+    </div>
+    <div class="footer-col">
+      <h4>— Запись</h4>
+      <a href="#" class="booking-link" target="_blank" rel="noopener">Yclients →</a>
+      <a href="https://t.me/kyliebeautybarr" target="_blank" rel="noopener">Telegram</a>
+      <a href="https://wa.me/79586337105" target="_blank" rel="noopener">WhatsApp</a>
+      <a href="https://vk.ru/kyliebeautybar" target="_blank" rel="noopener">ВКонтакте</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>© 2026 КАЙЛИ · Студия красоты</div>
+    <div class="mono">МОСКВА · РОЖДЕСТВЕНСКАЯ 32</div>
+  </div>
+</footer>
+
+<a href="#" class="booking-fab booking-link" target="_blank" rel="noopener">
+  <span class="booking-fab-text">Записаться</span>
+  <span class="booking-fab-arrow">→</span>
+</a>
+
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.13/dist/lenis.min.js"></script>
+<script>
+// ==============================================
+// BOOKING URL — ваша ссылка на онлайн-запись Yclients
+// ==============================================
+const BOOKING_URL = 'https://n207077.yclients.com/company/206872/personal/menu?o=';
+
+document.querySelectorAll('.booking-link').forEach(el => {
+  el.setAttribute('href', BOOKING_URL);
+});
+
+// Lenis Smooth Scroll
+let lenis;
+if (typeof Lenis !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  lenis = new Lenis({
+    duration: 1.2,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    smoothWheel: true,
+    touchMultiplier: 1.5,
+  });
+  function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+  requestAnimationFrame(raf);
+}
+
+// Intersection Observer
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('is-in');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+function observeReveals(scope) {
+  (scope || document).querySelectorAll('.reveal:not(.is-in)').forEach(el => {
+    observer.observe(el);
+  });
+}
+
+// Page Navigation
+const pages = document.querySelectorAll('.page');
+const navLinks = document.querySelectorAll('.nav-link');
+const burger = document.getElementById('burger');
+const mobileMenu = document.getElementById('mobileMenu');
+let currentPage = 'home';
+let isNavigating = false;
+
+function navigate(pageId) {
+  if (pageId === currentPage || isNavigating) return;
+  isNavigating = true;
+
+  const target = document.getElementById(`page-${pageId}`);
+  if (!target) { isNavigating = false; return; }
+
+  pages.forEach(p => p.classList.remove('active'));
+  target.classList.add('active');
+
+  navLinks.forEach(l => l.classList.toggle('active', l.dataset.page === pageId));
+
+  if (lenis) { lenis.scrollTo(0, { immediate: true }); }
+  window.scrollTo(0, 0);
+
+  mobileMenu.classList.remove('open');
+  burger.classList.remove('open');
+
+  target.querySelectorAll('.reveal').forEach(el => el.classList.remove('is-in'));
+
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      observeReveals(target);
+      target.querySelectorAll('.reveal').forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.88 && rect.bottom > 0) {
+          el.classList.add('is-in');
+        }
+      });
+      isNavigating = false;
+    });
+  });
+
+  currentPage = pageId;
+}
+
+document.querySelectorAll('[data-page]').forEach(el => {
+  el.addEventListener('click', (e) => {
+    const page = el.dataset.page;
+    if (page) { e.preventDefault(); navigate(page); }
+  });
+});
+
+observeReveals(document.querySelector('.page.active'));
+
+setTimeout(() => {
+  const hero = document.querySelector('.hero');
+  if (hero) hero.classList.add('is-in');
+}, 150);
+
+burger.addEventListener('click', () => {
+  burger.classList.toggle('open');
+  mobileMenu.classList.toggle('open');
+});
+
+const nav = document.querySelector('.nav');
+window.addEventListener('scroll', () => {
+  if (window.pageYOffset > 60) {
+    nav.style.padding = '1rem 2rem';
+    nav.style.background = 'rgba(10,10,10,0.92)';
+  } else {
+    nav.style.padding = '1.5rem 2rem';
+    nav.style.background = 'rgba(10,10,10,0.75)';
+  }
+}, { passive: true });
+
+if (window.matchMedia('(pointer: coarse)').matches) {
+  document.body.classList.add('touch');
+}
+</script>
+
+</body>
+</html>
